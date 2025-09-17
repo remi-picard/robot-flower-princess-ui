@@ -57,7 +57,7 @@ const App: React.FC = () => {
         icon: React.ReactNode;
         disabled?: boolean;
     }> = ({ action, label, icon, disabled = false }) => (
-        <div className="bg-white p-4 rounded-lg shadow border">
+        <div id={`command-${action}`} className="bg-white p-4 rounded-lg shadow border">
             <h3 className="font-bold mb-2 flex items-center gap-2">
                 {icon}
                 {label}
@@ -67,7 +67,7 @@ const App: React.FC = () => {
                 <button
                     onClick={() => performAction(action, Direction.HAUT)}
                     disabled={disabled || loading}
-                    className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white p-2 rounded font-bold"
+                    className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white p-2 rounded font-bold up-button"
                 >
                     ↑
                 </button>
@@ -75,7 +75,7 @@ const App: React.FC = () => {
                 <button
                     onClick={() => performAction(action, Direction.GAUCHE)}
                     disabled={disabled || loading}
-                    className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white p-2 rounded font-bold"
+                    className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white p-2 rounded font-bold left-button"
                 >
                     ←
                 </button>
@@ -83,7 +83,7 @@ const App: React.FC = () => {
                 <button
                     onClick={() => performAction(action, Direction.DROITE)}
                     disabled={disabled || loading}
-                    className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white p-2 rounded font-bold"
+                    className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white p-2 rounded font-bold right-button"
                 >
                     →
                 </button>
@@ -91,7 +91,7 @@ const App: React.FC = () => {
                 <button
                     onClick={() => performAction(action, Direction.BAS)}
                     disabled={disabled || loading}
-                    className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white p-2 rounded font-bold"
+                    className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white p-2 rounded font-bold down-button"
                 >
                     ↓
                 </button>
@@ -175,6 +175,7 @@ const App: React.FC = () => {
                                 </div>
                             </div>
                             <button
+                                id="create-button"
                                 onClick={() => createGame(newGameDimensions)}
                                 disabled={loading}
                                 className="bg-green-500 hover:bg-green-600 disabled:bg-gray-300 text-white px-4 py-2 rounded font-bold flex items-center gap-2"
@@ -185,7 +186,7 @@ const App: React.FC = () => {
                         </div>
 
                         {/* Liste des parties */}
-                        <div className="bg-white p-6 rounded-lg shadow">
+                        <div id="games" className="bg-white p-6 rounded-lg shadow">
                             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
                                 <RotateCcw size={20} />
                                 Parties ({games.length})
@@ -194,8 +195,9 @@ const App: React.FC = () => {
                                 {games.map((game) => (
                                     <div
                                         key={game.game_id}
+                                        id={`game-${game.game_id}`}
                                         onClick={() => selectGame(game.game_id)}
-                                        className={`p-3 border rounded cursor-pointer hover:bg-gray-50 ${
+                                        className={`game p-3 border rounded cursor-pointer hover:bg-gray-50 ${
                                             currentGame === game.game_id ? 'bg-blue-50 border-blue-300' : ''
                                         }`}
                                     >
