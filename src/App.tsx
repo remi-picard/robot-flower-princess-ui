@@ -32,11 +32,11 @@ const App: React.FC = () => {
                             <div
                                 key={`${rowIndex}-${colIndex}`}
                                 className={`w-8 h-8 border border-gray-600 flex items-center justify-center text-lg font-bold
-                  ${cell === 'R' ? 'bg-blue-500 text-white' : ''}
-                  ${cell === 'P' ? 'bg-pink-500 text-white' : ''}
-                  ${cell === 'F' ? 'bg-green-500 text-white' : ''}
-                  ${cell === 'D' ? 'bg-orange-600 text-white' : ''}
-                  ${cell === 'V' ? 'bg-gray-200' : ''}
+                  ${cell === 'R' ? 'bg-blue-500 text-white robot' : ''}
+                  ${cell === 'P' ? 'bg-pink-500 text-white princess' : ''}
+                  ${cell === 'F' ? 'bg-green-500 text-white flower' : ''}
+                  ${cell === 'D' ? 'bg-orange-600 text-white trash' : ''}
+                  ${cell === 'V' ? 'bg-gray-200 empty' : ''}
                 `}
                             >
                                 {cell === 'R' && <Bot size={16} />}
